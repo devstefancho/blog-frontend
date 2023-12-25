@@ -2,24 +2,34 @@ import path from "path";
 import fs from "fs/promises";
 import { Suspense } from "react";
 import matter from "gray-matter";
-import { marked } from "marked";
 import { getDate } from "@/utils/date";
+import { remark } from "remark";
+import { visit } from "unist-util-visit";
+import ScrollToHeading from "@/components/ScrollToHeading";
+import { markedInstance } from "@/utils/marked";
+import { HeadingNode, Frontmatter } from "@/types/content";
+import TableOfContents from "@/components/TableOfContents";
 
-interface Frontmatter {
-  id: string; // atomic-habits
-  slug: string; // atomic-habits
-  createdDate: string; // 2023-11-06
-  updatedDate: string; // 2023-12-25
+async function getHeadings(markdownContent: string) {
+  const headings: HeadingNode[] = [];
+
+  const tree = remark().parse(markdownContent);
+  visit(tree, "heading", (node) => {
+    headings.push(node as HeadingNode);
+  });
+
+  return headings;
 }
 
 async function ExampleContent() {
   const filePath = path.join(process.cwd(), "example_content", "example.md");
   const fileContents = await fs.readFile(filePath, "utf8");
   const { content, data } = matter(fileContents);
+  const headings: HeadingNode[] = await getHeadings(content);
   const frontmatter = data as Frontmatter;
-  const htmlContent = await marked(content);
   const createdDate = getDate(frontmatter.createdDate);
   const updatedDate = getDate(frontmatter.updatedDate);
+  const htmlContent = await markedInstance(content);
 
   return (
     <div
@@ -27,6 +37,7 @@ async function ExampleContent() {
       style={{ maxWidth: 620 }}
     >
       <div>
+        <TableOfContents headings={headings} />
         <div className="mb-3">Slug: {frontmatter.slug}</div>
         <time className="text-sm block">Created: {createdDate}</time>
         <time className="text-sm block">Updated: {updatedDate}</time>
@@ -48,6 +59,7 @@ export default async function Page({
     <>
       <Suspense fallback={<div>Loading...</div>}>
         <ExampleContent />
+        <ScrollToHeading />
       </Suspense>
     </>
   );
