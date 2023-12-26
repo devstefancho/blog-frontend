@@ -3,13 +3,22 @@
 import { useEffect } from "react";
 
 const ScrollToHeading = () => {
+  const scrollToHeading = (element: HTMLElement) => {
+    setTimeout(() => {
+      element.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
+
   useEffect(() => {
     const hash = window.location.hash;
     if (hash) {
       const decodedHash = decodeURIComponent(hash);
-      const element = window.document.querySelector(decodedHash);
+      const element = window.document.getElementById(
+        decodedHash.replace("#", "")
+      );
+
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        scrollToHeading(element);
       }
     }
   }, []);
