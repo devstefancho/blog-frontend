@@ -9,6 +9,21 @@ import ScrollToHeading from "@/components/ScrollToHeading";
 import { markedInstance } from "@/utils/marked";
 import { HeadingNode, Frontmatter } from "@/types/content";
 import TableOfContents from "@/components/TableOfContents";
+import { Metadata, ResolvingMetadata } from "next";
+
+type Params = {
+  params: {
+    slug: string;
+  };
+};
+
+export async function generateMetadata({ params }: Params): Promise<Metadata> {
+  const slug = params.slug;
+
+  return {
+    title: `Content | ${slug.slice(0, 1).toUpperCase()}${slug.slice(1)}`,
+  };
+}
 
 async function getHeadings(markdownContent: string) {
   const headings: HeadingNode[] = [];
@@ -21,8 +36,8 @@ async function getHeadings(markdownContent: string) {
   return headings;
 }
 
-async function ExampleContent() {
-  const filePath = path.join(process.cwd(), "example_content", "example.md");
+async function ExampleContent({ slug }: { slug: string }) {
+  const filePath = path.join(process.cwd(), "example_content", `${slug}.md`);
   const fileContents = await fs.readFile(filePath, "utf8");
   const { content, data } = matter(fileContents);
   const headings: HeadingNode[] = await getHeadings(content);
@@ -50,15 +65,11 @@ async function ExampleContent() {
   );
 }
 
-export default async function Page({
-  params: { username },
-}: {
-  params: { username: string };
-}) {
+export default async function Page({ params: { slug } }: Params) {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-        <ExampleContent />
+        <ExampleContent slug={slug} />
         <ScrollToHeading />
       </Suspense>
     </>
