@@ -27,7 +27,7 @@ const getPaddingLeft = (depth: number) => {
 const TableOfContents: FC<PropTypes> = ({ headings }) => {
   return (
     <>
-      <ul className="fixed right-[130px] top-10">
+      <ul className="relative rounded-lg p-4 bg-white mb-5 tocLarge:fixed tocLarge:right-[130px] tocLarge:top-10 tocLarge:max-w-[400px] dark:text-black">
         {headings.map((h) =>
           h.children.map((child) => {
             return (
