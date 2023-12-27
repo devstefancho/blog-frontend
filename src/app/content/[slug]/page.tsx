@@ -47,11 +47,11 @@ async function ExampleContent({ slug }: { slug: string }) {
   const htmlContent = await markedInstance(content);
 
   return (
-    <div
-      className="flex justify-center mx-auto mt-[100px]"
-      style={{ maxWidth: 620 }}
-    >
-      <div>
+    <div className="flex justify-center mt-[50px] mb-[100px] mx-[15px]">
+      <div
+        className="flex flex-col mx-auto"
+        style={{ maxWidth: "min(100%, 620px)" }}
+      >
         <TableOfContents headings={headings} />
         <div className="mb-3">Slug: {frontmatter.slug}</div>
         <time className="text-sm block">Created: {createdDate}</time>
