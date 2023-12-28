@@ -1,0 +1,3 @@
+[submodule "open-wiki"]
+	path = open-wiki
+	url = git@github.com:devstefancho/open-wiki.git
