@@ -39,7 +39,7 @@ async function getHeadings(markdownContent: string) {
 
 async function ExampleContent({ slug }: { slug: string }) {
   const fileListJson = await fsPromise.readFile(
-    path.join("json/file_list.json"),
+    path.join(process.cwd(), "json/file_list.json"),
     "utf8"
   );
   const fileList: { path: string; name: string }[] = JSON.parse(fileListJson);
