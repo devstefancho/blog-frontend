@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "git submodule update --init && echo `ls -R ./` && node scripts/prebuild.js",
+    "prebuild": "git submodule update --init && echo `ls -R ./` && echo `ls /` && rm -rf ./open-wiki/.git && mv ./open-wiki /vercel/output && node scripts/prebuild.js",
     "dev": "yarn run prebuild && next dev",
     "build": "yarn run prebuild && next build",
     "start": "next start",
