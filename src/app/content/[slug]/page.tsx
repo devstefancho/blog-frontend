@@ -1,5 +1,5 @@
 import path from "path";
-import fs from "fs/promises";
+import fsPromise from "fs/promises";
 import { Suspense } from "react";
 import matter from "gray-matter";
 import { getDate } from "@/utils/date";
@@ -9,7 +9,8 @@ import ScrollToHeading from "@/components/ScrollToHeading";
 import { markedInstance } from "@/utils/marked";
 import { HeadingNode, Frontmatter } from "@/types/content";
 import TableOfContents from "@/components/TableOfContents";
-import { Metadata, ResolvingMetadata } from "next";
+import { Metadata } from "next";
+import recursive from "recursive-readdir";
 
 type Params = {
   params: {
@@ -37,8 +38,19 @@ async function getHeadings(markdownContent: string) {
 }
 
 async function ExampleContent({ slug }: { slug: string }) {
-  const filePath = path.join(process.cwd(), "example_content", `${slug}.md`);
-  const fileContents = await fs.readFile(filePath, "utf8");
+  const fileListJson = await fsPromise.readFile(
+    path.join("json/file_list.json"),
+    "utf8"
+  );
+  const fileList: { path: string; name: string }[] = JSON.parse(fileListJson);
+  const matchFile = fileList.find((file) => file.name === slug);
+
+  if (!matchFile) {
+    return <div>Not found</div>;
+  }
+
+  const filePath = matchFile.path;
+  const fileContents = await fsPromise.readFile(filePath, "utf8");
   const { content, data } = matter(fileContents);
   const headings: HeadingNode[] = await getHeadings(content);
   const frontmatter = data as Frontmatter;
