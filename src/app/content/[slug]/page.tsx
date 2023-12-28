@@ -49,7 +49,7 @@ async function ExampleContent({ slug }: { slug: string }) {
     return <div>Not found</div>;
   }
 
-  const filePath = matchFile.path;
+  const filePath = path.join(matchFile.path);
   const fileContents = await fsPromise.readFile(filePath, "utf8");
   const { content, data } = matter(fileContents);
   const headings: HeadingNode[] = await getHeadings(content);
