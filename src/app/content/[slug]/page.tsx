@@ -75,7 +75,11 @@ async function ExampleContent({ slug }: { slug: string }) {
   });
 
   // const filePath = path.join(process.cwd(), matchFile.path);
-  const filePath = path.join(process.cwd(), "example_content/example.md"); // test code
+  // const filePath = path.join(process.cwd(), "example_content/example.md"); // test code
+  const filePath = path.join(
+    process.cwd(),
+    "__open-wiki/book/atomic-habits.md"
+  ); // test code
   let fileContents = "";
   try {
     fileContents = await fsPromise.readFile(filePath, "utf8");
