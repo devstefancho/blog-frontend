@@ -15,11 +15,13 @@ export default async function Home() {
   const fileList = await getFiles();
   return (
     <div className="flex justify-center mt-10 min-h-[100vh]">
-      {fileList.map((file) => (
-        <Link key={file.path} href={`/content/${file.name}`}>
-          Go to {file.name}
-        </Link>
-      ))}
+      <div className="flex flex-col items-center">
+        {fileList.map((file) => (
+          <Link key={file.path} href={`/content/${file.name}`}>
+            Go to {file.name}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 }
