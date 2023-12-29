@@ -92,7 +92,7 @@ async function ExampleContent({ slug }: { slug: string }) {
 
   let fileContents = "";
   try {
-    fileContents = await fsPromise.readFile(filePath, "utf8");
+    fileContents = await fsPromise.readFile(filePathByFile, "utf8");
   } catch (e) {
     console.log("-------- path is not exist --------");
     console.error(e);
