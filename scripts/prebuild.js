@@ -5,7 +5,7 @@ const recursive = require("recursive-readdir");
 const fs = require("fs");
 
 function getFileList() {
-  recursive("open-wiki", [".git", "README.md"], function (err, files) {
+  recursive("__open-wiki", [".git", "README.md"], function (err, files) {
     if (err) {
       console.error(err);
       return;
