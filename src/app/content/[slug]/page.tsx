@@ -77,13 +77,18 @@ async function ExampleContent({ slug }: { slug: string }) {
   // ** TEST FILE PATH **
   const filePathByFile = path.join(process.cwd(), matchFile.path);
   // const filePath = path.join(process.cwd(), "example_content/example.md"); // test code
-  const filePath = path.join(
-    process.cwd(),
-    slug === "atomic-habits"
-      ? "open-wiki/areas/book/atomic-habits.md"
-      : `open-wiki/areas/nvim/${slug}.md`
-  );
+  let relativePath = "";
+  if (slug === "atomic-habits") {
+    relativePath = "open-wiki/areas/book/atomic-habits.md";
+  } else if (slug === "vim-basic") {
+    relativePath = "open-wiki/areas/nvim/vim-basic.md";
+  } else if (slug === "nvim-dap") {
+    relativePath = "open-wiki/areas/nvim/nvim-dap.md";
+  }
+
+  const filePath = path.join(process.cwd(), relativePath);
   console.log({
+    p: matchFile.path,
     filePath,
     filePathByFile,
     eq: filePath === filePathByFile,
