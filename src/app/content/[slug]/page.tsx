@@ -78,7 +78,9 @@ async function ExampleContent({ slug }: { slug: string }) {
   // const filePath = path.join(process.cwd(), "example_content/example.md"); // test code
   const filePath = path.join(
     process.cwd(),
-    "open-wiki/areas/book/atomic-habits.md"
+    slug === "atomic-habits"
+      ? "open-wiki/areas/book/atomic-habits.md"
+      : `open-wiki/areas/nvim/vim-basic.md`
   ); // test code
   let fileContents = "";
   try {
