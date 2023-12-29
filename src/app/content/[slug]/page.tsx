@@ -81,7 +81,7 @@ async function ExampleContent({ slug }: { slug: string }) {
     process.cwd(),
     slug === "atomic-habits"
       ? "open-wiki/areas/book/atomic-habits.md"
-      : `open-wiki/areas/nvim/vim-basic.md`
+      : `open-wiki/areas/nvim/${slug}.md`
   );
   console.log({
     filePath,
@@ -92,7 +92,7 @@ async function ExampleContent({ slug }: { slug: string }) {
 
   let fileContents = "";
   try {
-    fileContents = await fsPromise.readFile(filePathByFile, "utf8");
+    fileContents = await fsPromise.readFile(filePath, "utf8");
   } catch (e) {
     console.log("-------- path is not exist --------");
     console.error(e);
