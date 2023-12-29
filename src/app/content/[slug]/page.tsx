@@ -74,14 +74,22 @@ async function ExampleContent({ slug }: { slug: string }) {
     console.log({ fileList });
   });
 
-  // const filePath = path.join(process.cwd(), matchFile.path);
+  // ** TEST FILE PATH **
+  const filePathByFile = path.join(process.cwd(), matchFile.path);
   // const filePath = path.join(process.cwd(), "example_content/example.md"); // test code
   const filePath = path.join(
     process.cwd(),
     slug === "atomic-habits"
       ? "open-wiki/areas/book/atomic-habits.md"
       : `open-wiki/areas/nvim/vim-basic.md`
-  ); // test code
+  );
+  console.log({
+    filePath,
+    filePathByFile,
+    eq: filePath === filePathByFile,
+  });
+  // ** TEST FILE PATH **
+
   let fileContents = "";
   try {
     fileContents = await fsPromise.readFile(filePath, "utf8");
