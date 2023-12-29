@@ -78,7 +78,7 @@ async function ExampleContent({ slug }: { slug: string }) {
   // const filePath = path.join(process.cwd(), "example_content/example.md"); // test code
   const filePath = path.join(
     process.cwd(),
-    "__open-wiki/book/atomic-habits.md"
+    "open-wiki/areas/book/atomic-habits.md"
   ); // test code
   let fileContents = "";
   try {
