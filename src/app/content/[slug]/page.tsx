@@ -81,7 +81,9 @@ async function ExampleContent({ slug }: { slug: string }) {
     process.cwd(),
     slug === "atomic-habits"
       ? "open-wiki/areas/book/atomic-habits.md"
-      : `open-wiki/areas/nvim/nvim-dap.md`
+      : slug === "nvim-dap"
+      ? `open-wiki/areas/nvim/nvim-dap.md`
+      : `open-wiki/areas/nvim/vim-basic.md`
   );
   console.log({
     filePath,
