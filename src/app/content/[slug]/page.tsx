@@ -51,6 +51,7 @@ async function ExampleContent({ slug }: { slug: string }) {
     path.join(process.cwd(), "json/file_list.json"),
     "utf8"
   );
+  console.log("fileListJson:", fileListJson);
   const fileList: { path: string; name: string }[] = JSON.parse(fileListJson);
   const matchFile = fileList.find((file) => file.name === slug);
 
@@ -58,7 +59,8 @@ async function ExampleContent({ slug }: { slug: string }) {
     return <div>Not found</div>;
   }
 
-  recursive("./", [ignoreFunc], function (err, files) {
+  const pathForPrint = path.join(process.cwd());
+  recursive(pathForPrint, [ignoreFunc], function (err, files) {
     if (err) {
       console.error(err);
       return;
