@@ -37,6 +37,15 @@ async function getHeadings(markdownContent: string) {
   return headings;
 }
 
+// @ts-ignore
+function ignoreFunc(file, stats) {
+  const isIgnore =
+    file.includes("node_modules") ||
+    file.includes(".git") ||
+    file.includes(".next");
+  return stats.isDirectory() && isIgnore;
+}
+
 async function ExampleContent({ slug }: { slug: string }) {
   const fileListJson = await fsPromise.readFile(
     path.join(process.cwd(), "json/file_list.json"),
@@ -49,8 +58,28 @@ async function ExampleContent({ slug }: { slug: string }) {
     return <div>Not found</div>;
   }
 
+  recursive("./", [ignoreFunc], function (err, files) {
+    if (err) {
+      console.error(err);
+      return;
+    }
+
+    let fileList = files.map((file) => ({
+      path: file,
+      name: path.basename(file).replace(".md", ""),
+    }));
+
+    console.log({ fileList });
+  });
+
   const filePath = path.join(matchFile.path);
-  const fileContents = await fsPromise.readFile(filePath, "utf8");
+  let fileContents = "";
+  try {
+    fileContents = await fsPromise.readFile(filePath, "utf8");
+  } catch (e) {
+    console.log("-------- path is not exist --------");
+    console.error(e);
+  }
   const { content, data } = matter(fileContents);
   const headings: HeadingNode[] = await getHeadings(content);
   const frontmatter = data as Frontmatter;
