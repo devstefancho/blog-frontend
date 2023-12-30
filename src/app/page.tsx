@@ -11,17 +11,28 @@ async function getFiles() {
   return fileList;
 }
 
+async function getHello() {
+  const result = await fetch("https://nestjs-test.up.railway.app/").then(
+    (res) => res.text()
+  );
+  return result;
+}
+
 export default async function Home() {
   const fileList = await getFiles();
+  const helloText = await getHello();
   return (
-    <div className="flex justify-center mt-10 min-h-[100vh]">
-      <div className="flex flex-col items-center">
-        {fileList.map((file) => (
-          <Link key={file.path} href={`/content/${file.name}`}>
-            Go to {file.name}
-          </Link>
-        ))}
+    <>
+      <h1 className="flex justify-center mt-10">{helloText}</h1>
+      <div className="flex justify-center mt-10 min-h-[100vh]">
+        <div className="flex flex-col items-center">
+          {fileList.map((file) => (
+            <Link key={file.path} href={`/content/${file.name}`}>
+              Go to {file.name}
+            </Link>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
