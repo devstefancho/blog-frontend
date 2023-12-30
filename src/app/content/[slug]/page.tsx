@@ -46,65 +46,78 @@ function ignoreFunc(file, stats) {
   return stats.isDirectory() && isIgnore;
 }
 
-async function ExampleContent({ slug }: { slug: string }) {
-  const fileListJson = await fsPromise.readFile(
-    path.join(process.cwd(), "json/file_list.json"),
-    "utf8"
+async function getBlog(): Promise<{
+  html: string;
+  frontmatter: Frontmatter;
+}> {
+  const result = await fetch(
+    "https://nestjs-test.up.railway.app/markdown/atomic-habits"
   );
-  console.log("fileListJson:", fileListJson);
-  const fileList: { path: string; name: string }[] = JSON.parse(fileListJson);
-  const matchFile = fileList.find((file) => file.name === slug);
+  return await result.json();
+}
 
-  if (!matchFile) {
-    return <div>Not found</div>;
-  }
+async function ExampleContent({ slug }: { slug: string }) {
+  // const fileListJson = await fsPromise.readFile(
+  //   path.join(process.cwd(), "json/file_list.json"),
+  //   "utf8"
+  // );
+  // console.log("fileListJson:", fileListJson);
+  // const fileList: { path: string; name: string }[] = JSON.parse(fileListJson);
+  // const matchFile = fileList.find((file) => file.name === slug);
+  //
+  // if (!matchFile) {
+  //   return <div>Not found</div>;
+  // }
+  //
+  // const pathForPrint = path.join(process.cwd());
+  // recursive(pathForPrint, [ignoreFunc], function (err, files) {
+  //   if (err) {
+  //     console.error(err);
+  //     return;
+  //   }
+  //
+  //   let fileList = files.map((file) => ({
+  //     path: file,
+  //     name: path.basename(file).replace(".md", ""),
+  //   }));
+  //
+  //   console.log({ fileList });
+  // });
+  //
+  // // ** TEST FILE PATH **
+  // const filePathByFile = path.join(process.cwd(), matchFile.path);
+  // // const filePath = path.join(process.cwd(), "example_content/example.md"); // test code
+  //
+  // let relativePath = "";
+  // if (slug === "nvim-dap") {
+  //   relativePath = `open-wiki/areas/nvim/nvim-dap.md`;
+  // } else if (slug === "vim-basic") {
+  //   relativePath = `open-wiki/areas/nvim/vim-basic.md`;
+  // }
+  //
+  // const filePath = path.join(process.cwd(), relativePath);
+  // console.log({
+  //   filePath,
+  //   filePathByFile,
+  //   eq: filePath === filePathByFile,
+  // });
+  // // ** TEST FILE PATH **
+  // let fileContents = "";
+  // try {
+  //   fileContents = await fsPromise.readFile(filePathByFile, "utf8");
+  // } catch (e) {
+  //   console.log("-------- path is not exist --------");
+  //   console.error(e);
+  // }
+  // const { content, data } = matter(fileContents);
+  // const headings: HeadingNode[] = await getHeadings(content);
+  // const frontmatter = data as Frontmatter;
+  // const createdDate = getDate(frontmatter.createdDate);
+  // const updatedDate = getDate(frontmatter.updatedDate);
+  // const htmlContent = await markedInstance(content);
 
-  const pathForPrint = path.join(process.cwd());
-  recursive(pathForPrint, [ignoreFunc], function (err, files) {
-    if (err) {
-      console.error(err);
-      return;
-    }
-
-    let fileList = files.map((file) => ({
-      path: file,
-      name: path.basename(file).replace(".md", ""),
-    }));
-
-    console.log({ fileList });
-  });
-
-  // ** TEST FILE PATH **
-  const filePathByFile = path.join(process.cwd(), matchFile.path);
-  // const filePath = path.join(process.cwd(), "example_content/example.md"); // test code
-
-  let relativePath = "";
-  if (slug === "nvim-dap") {
-    relativePath = `open-wiki/areas/nvim/nvim-dap.md`;
-  } else if (slug === "vim-basic") {
-    relativePath = `open-wiki/areas/nvim/vim-basic.md`;
-  }
-
-  const filePath = path.join(process.cwd(), relativePath);
-  console.log({
-    filePath,
-    filePathByFile,
-    eq: filePath === filePathByFile,
-  });
-  // ** TEST FILE PATH **
-  let fileContents = "";
-  try {
-    fileContents = await fsPromise.readFile(filePathByFile, "utf8");
-  } catch (e) {
-    console.log("-------- path is not exist --------");
-    console.error(e);
-  }
-  const { content, data } = matter(fileContents);
-  const headings: HeadingNode[] = await getHeadings(content);
-  const frontmatter = data as Frontmatter;
-  const createdDate = getDate(frontmatter.createdDate);
-  const updatedDate = getDate(frontmatter.updatedDate);
-  const htmlContent = await markedInstance(content);
+  const data = await getBlog();
+  console.log({ data });
 
   return (
     <div className="flex justify-center mt-[50px] mb-[100px] mx-[15px]">
@@ -112,14 +125,27 @@ async function ExampleContent({ slug }: { slug: string }) {
         className="flex flex-col mx-auto"
         style={{ maxWidth: "min(100%, 620px)" }}
       >
-        <TableOfContents headings={headings} />
-        <div className="mb-3">Slug: {frontmatter.slug}</div>
-        <time className="text-sm block">Created: {createdDate}</time>
-        <time className="text-sm block">Updated: {updatedDate}</time>
-        <div
-          className="mt-3"
-          dangerouslySetInnerHTML={{ __html: htmlContent }}
-        />
+        {/* <TableOfContents headings={headings} /> */}
+        {/* <div className="mb-3">Slug: {frontmatter.slug}</div> */}
+        {/* <time className="text-sm block">Created: {createdDate}</time> */}
+        {/* <time className="text-sm block">Updated: {updatedDate}</time> */}
+        {/* <div */}
+        {/*   className="mt-3" */}
+        {/*   dangerouslySetInnerHTML={{ __html: htmlContent }} */}
+        {/* /> */}
+        <div className="mb-3">Slug: {data.frontmatter?.slug}</div>
+        <time className="text-sm block">
+          Created: {data.frontmatter?.createdDate}
+        </time>
+        <time className="text-sm block">
+          Updated: {data.frontmatter?.updatedDate}
+        </time>
+        {data?.html && (
+          <div
+            className="mt-3"
+            dangerouslySetInnerHTML={{ __html: data.html }}
+          />
+        )}
       </div>
     </div>
   );
