@@ -1,15 +1,4 @@
 import Link from "next/link";
-import path from "path";
-import fsPromise from "fs/promises";
-
-// async function getFiles() {
-//   const fileListJson = await fsPromise.readFile(
-//     path.join("json/file_list.json"),
-//     "utf8"
-//   );
-//   const fileList: { path: string; name: string }[] = JSON.parse(fileListJson);
-//   return fileList;
-// }
 
 const baseUrl = "https://nestjs-test.up.railway.app/";
 
