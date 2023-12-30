@@ -46,14 +46,21 @@ function ignoreFunc(file, stats) {
   return stats.isDirectory() && isIgnore;
 }
 
-async function getBlog(): Promise<{
+async function getBlog(slug: string): Promise<{
   html: string;
   frontmatter: Frontmatter;
 }> {
   const result = await fetch(
-    "https://nestjs-test.up.railway.app/markdown/atomic-habits"
+    `https://nestjs-test.up.railway.app/markdown/${slug}`
   );
   return await result.json();
+  // if (slug.includes("vim")) {
+  //   const result = await fetch(`http://localhost:8000/markdown/nvim/${slug}`);
+  //   return await result.json();
+  // } else {
+  //   const result = await fetch(`http://localhost:8000/markdown/${slug}`);
+  //   return await result.json();
+  // }
 }
 
 async function ExampleContent({ slug }: { slug: string }) {
@@ -116,7 +123,7 @@ async function ExampleContent({ slug }: { slug: string }) {
   // const updatedDate = getDate(frontmatter.updatedDate);
   // const htmlContent = await markedInstance(content);
 
-  const data = await getBlog();
+  const data = await getBlog(slug);
   console.log({ data });
 
   return (
