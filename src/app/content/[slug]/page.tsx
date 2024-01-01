@@ -1,16 +1,9 @@
-import path from "path";
-import fsPromise from "fs/promises";
 import { Suspense } from "react";
-import matter from "gray-matter";
-import { getDate } from "@/utils/date";
 import { remark } from "remark";
 import { visit } from "unist-util-visit";
 import ScrollToHeading from "@/components/ScrollToHeading";
-import { markedInstance } from "@/utils/marked";
 import { HeadingNode, Frontmatter } from "@/types/content";
-import TableOfContents from "@/components/TableOfContents";
 import { Metadata } from "next";
-import recursive from "recursive-readdir";
 
 type Params = {
   params: {
@@ -37,95 +30,18 @@ async function getHeadings(markdownContent: string) {
   return headings;
 }
 
-// @ts-ignore
-function ignoreFunc(file, stats) {
-  const isIgnore =
-    file.includes("node_modules") ||
-    file.includes(".git") ||
-    file.includes(".next");
-  return stats.isDirectory() && isIgnore;
-}
-
 async function getBlog(slug: string): Promise<{
   html: string;
   frontmatter: Frontmatter;
 }> {
   const result = await fetch(
-    `https://nestjs-test.up.railway.app/markdown/${slug}`
+    `${process.env.API_BACKEND_BASE_URL}/markdown/${slug}` // TODO 여기 open-wiki에 대해서 가져오도록 고쳐야함, 지금은 mock data 가져오는 api 사용중임
   );
   return await result.json();
-  // if (slug.includes("vim")) {
-  //   const result = await fetch(`http://localhost:8000/markdown/nvim/${slug}`);
-  //   return await result.json();
-  // } else {
-  //   const result = await fetch(`http://localhost:8000/markdown/${slug}`);
-  //   return await result.json();
-  // }
 }
 
 async function ExampleContent({ slug }: { slug: string }) {
-  // const fileListJson = await fsPromise.readFile(
-  //   path.join(process.cwd(), "json/file_list.json"),
-  //   "utf8"
-  // );
-  // console.log("fileListJson:", fileListJson);
-  // const fileList: { path: string; name: string }[] = JSON.parse(fileListJson);
-  // const matchFile = fileList.find((file) => file.name === slug);
-  //
-  // if (!matchFile) {
-  //   return <div>Not found</div>;
-  // }
-  //
-  // const pathForPrint = path.join(process.cwd());
-  // recursive(pathForPrint, [ignoreFunc], function (err, files) {
-  //   if (err) {
-  //     console.error(err);
-  //     return;
-  //   }
-  //
-  //   let fileList = files.map((file) => ({
-  //     path: file,
-  //     name: path.basename(file).replace(".md", ""),
-  //   }));
-  //
-  //   console.log({ fileList });
-  // });
-  //
-  // // ** TEST FILE PATH **
-  // const filePathByFile = path.join(process.cwd(), matchFile.path);
-  // // const filePath = path.join(process.cwd(), "example_content/example.md"); // test code
-  //
-  // let relativePath = "";
-  // if (slug === "nvim-dap") {
-  //   relativePath = `open-wiki/areas/nvim/nvim-dap.md`;
-  // } else if (slug === "vim-basic") {
-  //   relativePath = `open-wiki/areas/nvim/vim-basic.md`;
-  // }
-  //
-  // const filePath = path.join(process.cwd(), relativePath);
-  // console.log({
-  //   filePath,
-  //   filePathByFile,
-  //   eq: filePath === filePathByFile,
-  // });
-  // // ** TEST FILE PATH **
-  // let fileContents = "";
-  // try {
-  //   fileContents = await fsPromise.readFile(filePathByFile, "utf8");
-  // } catch (e) {
-  //   console.log("-------- path is not exist --------");
-  //   console.error(e);
-  // }
-  // const { content, data } = matter(fileContents);
-  // const headings: HeadingNode[] = await getHeadings(content);
-  // const frontmatter = data as Frontmatter;
-  // const createdDate = getDate(frontmatter.createdDate);
-  // const updatedDate = getDate(frontmatter.updatedDate);
-  // const htmlContent = await markedInstance(content);
-
   const data = await getBlog(slug);
-  console.log({ data });
-
   return (
     <div className="flex justify-center mt-[50px] mb-[100px] mx-[15px]">
       <div

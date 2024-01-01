@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-const baseUrl = "https://nestjs-test.up.railway.app/";
+const baseUrl: string = process.env.API_BACKEND_BASE_URL ?? "";
 
 async function getBlogList() {
   try {
-    const result = await fetch(baseUrl + "blog-list");
+    const result = await fetch(baseUrl + "/blog-list");
     return await result.json();
   } catch (e) {
     console.log(e);
@@ -18,7 +18,6 @@ async function getHello() {
 }
 
 export default async function Home() {
-  // const fileList = await getFiles();
   const helloText = await getHello();
   const data: { path: string; name: string }[] = await getBlogList();
   return (
