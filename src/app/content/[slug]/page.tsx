@@ -1,9 +1,9 @@
 import { Suspense } from "react";
-import { remark } from "remark";
-import { visit } from "unist-util-visit";
 import ScrollToHeading from "@/components/ScrollToHeading";
-import { HeadingNode, Frontmatter } from "@/types/content";
 import { Metadata } from "next";
+import { Frontmatter } from "@/types/content";
+import TableOfContents from "@/components/TableOfContents";
+import { getHeadings } from "@/utils/marked";
 
 type Params = {
   params: {
@@ -19,20 +19,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-async function getHeadings(markdownContent: string) {
-  const headings: HeadingNode[] = [];
-
-  const tree = remark().parse(markdownContent);
-  visit(tree, "heading", (node) => {
-    headings.push(node as HeadingNode);
-  });
-
-  return headings;
-}
-
 async function getBlog(slug: string): Promise<{
   html: string;
   frontmatter: Frontmatter;
+  content: string;
 }> {
   const result = await fetch(
     `${process.env.API_BACKEND_BASE_URL}/markdown/${slug}` // TODO 여기 open-wiki에 대해서 가져오도록 고쳐야함, 지금은 mock data 가져오는 api 사용중임
@@ -42,20 +32,14 @@ async function getBlog(slug: string): Promise<{
 
 async function ExampleContent({ slug }: { slug: string }) {
   const data = await getBlog(slug);
+  const headings = await getHeadings(data.content);
   return (
     <div className="flex justify-center mt-[50px] mb-[100px] mx-[15px]">
       <div
         className="flex flex-col mx-auto"
         style={{ maxWidth: "min(100%, 620px)" }}
       >
-        {/* <TableOfContents headings={headings} /> */}
-        {/* <div className="mb-3">Slug: {frontmatter.slug}</div> */}
-        {/* <time className="text-sm block">Created: {createdDate}</time> */}
-        {/* <time className="text-sm block">Updated: {updatedDate}</time> */}
-        {/* <div */}
-        {/*   className="mt-3" */}
-        {/*   dangerouslySetInnerHTML={{ __html: htmlContent }} */}
-        {/* /> */}
+        <TableOfContents headings={headings} />
         <div className="mb-3">Slug: {data.frontmatter?.slug}</div>
         <time className="text-sm block">
           Created: {data.frontmatter?.createdDate}

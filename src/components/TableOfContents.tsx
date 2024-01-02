@@ -11,12 +11,8 @@ const getPaddingLeft = (depth: number) => {
       return "pl-0";
     case 2:
       return "pl-6";
-    case 3:
-      return "pl-12";
-    case 4:
-      return "pl-18";
     default:
-      return "pl-0";
+      return "pl-12";
   }
 };
 
