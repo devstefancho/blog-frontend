@@ -24,7 +24,6 @@ export async function getHeadings(markdownContent: string) {
   visit(tree, "heading", (node) => {
     headings.push(node as HeadingNode);
   });
-  console.log({ markdownContent, headings });
 
   return headings;
 }
