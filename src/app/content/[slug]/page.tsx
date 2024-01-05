@@ -27,11 +27,13 @@ async function getBlog(slug: string): Promise<{
   const result = await fetch(
     `${process.env.API_BACKEND_BASE_URL}/markdown/${slug}` // TODO 여기 open-wiki에 대해서 가져오도록 고쳐야함, 지금은 mock data 가져오는 api 사용중임
   );
+  console.log("api::", `${process.env.API_BACKEND_BASE_URL}/markdown/${slug}`);
   return await result.json();
 }
 
 async function ExampleContent({ slug }: { slug: string }) {
   const data = await getBlog(slug);
+  console.log({ content: data.content, keys: Object.keys(data) });
   const headings = await getHeadings(data.content);
   return (
     <div className="flex justify-center mt-[50px] mb-[100px] mx-[15px]">
