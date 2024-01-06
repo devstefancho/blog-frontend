@@ -1,5 +1,5 @@
-import { HeadingNode } from "@/types/content";
-import { FC } from "react";
+import { HeadingNode } from '@/types/content';
+import { FC } from 'react';
 
 interface PropTypes {
   headings: HeadingNode[];
@@ -8,18 +8,18 @@ interface PropTypes {
 const getPaddingLeft = (depth: number) => {
   switch (depth) {
     case 1:
-      return "pl-0";
+      return 'pl-0';
     case 2:
-      return "pl-6";
+      return 'pl-6';
     default:
-      return "pl-12";
+      return 'pl-12';
   }
 };
 
 const TableOfContents: FC<PropTypes> = ({ headings }) => {
   return (
     <>
-      <ul className="relative rounded-[12px] p-4 bg-white mb-5 tocLarge:fixed tocLarge:right-[130px] tocLarge:top-10 tocLarge:max-w-[400px] dark:text-black">
+      <ul className="relative mb-5 rounded-[12px] bg-white p-4 tocLarge:fixed tocLarge:right-[130px] tocLarge:top-10 tocLarge:max-w-[400px] dark:text-black">
         {headings.map((h) =>
           h.children.map((child) => {
             return (
@@ -27,7 +27,7 @@ const TableOfContents: FC<PropTypes> = ({ headings }) => {
                 key={child.value}
                 className={`${getPaddingLeft(h.depth)} hover:text-sky-400`}
               >
-                <a href={`#${child.value.toLowerCase().replace(/ /g, "-")}`}>
+                <a href={`#${child.value.toLowerCase().replace(/ /g, '-')}`}>
                   {child.value}
                 </a>
               </li>

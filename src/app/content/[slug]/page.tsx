@@ -1,9 +1,9 @@
-import { Suspense } from "react";
-import ScrollToHeading from "@/components/ScrollToHeading";
-import { Metadata } from "next";
-import { Frontmatter } from "@/types/content";
-import TableOfContents from "@/components/TableOfContents";
-import { getHeadings } from "@/utils/marked";
+import { Suspense } from 'react';
+import ScrollToHeading from '@/components/ScrollToHeading';
+import { Metadata } from 'next';
+import { Frontmatter } from '@/types/content';
+import TableOfContents from '@/components/TableOfContents';
+import { getHeadings } from '@/utils/marked';
 
 type Params = {
   params: {
@@ -34,17 +34,17 @@ async function ExampleContent({ slug }: { slug: string }) {
   const data = await getBlog(slug);
   const headings = await getHeadings(data.content);
   return (
-    <div className="flex justify-center mt-[50px] mb-[100px] mx-[15px]">
+    <div className="mx-[15px] mb-[100px] mt-[50px] flex justify-center">
       <div
-        className="flex flex-col mx-auto"
-        style={{ maxWidth: "min(100%, 620px)" }}
+        className="mx-auto flex flex-col"
+        style={{ maxWidth: 'min(100%, 620px)' }}
       >
         <TableOfContents headings={headings} />
         <div className="mb-3">Slug: {data.frontmatter?.slug}</div>
-        <time className="text-sm block">
+        <time className="block text-sm">
           Created: {data.frontmatter?.createdDate}
         </time>
-        <time className="text-sm block">
+        <time className="block text-sm">
           Updated: {data.frontmatter?.updatedDate}
         </time>
         {data?.html && (

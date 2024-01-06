@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const ScrollToHeading = () => {
   const scrollToHeading = (element: HTMLElement) => {
     setTimeout(() => {
-      element.scrollIntoView({ behavior: "smooth" });
+      element.scrollIntoView({ behavior: 'smooth' });
     }, 100);
   };
 
@@ -14,7 +14,7 @@ const ScrollToHeading = () => {
     if (hash) {
       const decodedHash = decodeURIComponent(hash);
       const element = window.document.getElementById(
-        decodedHash.replace("#", "")
+        decodedHash.replace('#', '')
       );
 
       if (element) {

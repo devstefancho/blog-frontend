@@ -1,4 +1,4 @@
-import { Node as UnistNode } from "unist";
+import { Node as UnistNode } from 'unist';
 
 export interface Frontmatter {
   id: string; // atomic-habits
