@@ -11,6 +11,9 @@ type Params = {
   };
 };
 
+/** Disable Vercel Data Cache */
+export const fetchCache = 'force-no-store';
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const slug = params.slug;
 
