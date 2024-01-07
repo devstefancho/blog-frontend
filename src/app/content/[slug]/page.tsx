@@ -28,7 +28,7 @@ async function getBlog(slug: string): Promise<{
   content: string;
 }> {
   const result = await fetch(
-    `${process.env.API_BACKEND_BASE_URL}/markdown/${slug}` // TODO 여기 open-wiki에 대해서 가져오도록 고쳐야함, 지금은 mock data 가져오는 api 사용중임
+    `${process.env.API_BACKEND_BASE_URL}/content/${slug}` // TODO 여기 open-wiki에 대해서 가져오도록 고쳐야함, 지금은 mock data 가져오는 api 사용중임
   );
   return await result.json();
 }
