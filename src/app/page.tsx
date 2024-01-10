@@ -14,18 +14,12 @@ async function getBlogList() {
   }
 }
 
-async function getHello() {
-  const result = await fetch(baseUrl).then((res) => res.text());
-  return result;
-}
-
 export default async function Home() {
-  const helloText = await getHello();
   const data: { path: string; name: string; slug: string }[] =
     await getBlogList();
   return (
     <>
-      <h1 className="mt-10 flex justify-center">{helloText}</h1>
+      <h1 className="mt-10 flex justify-center">Dev Stefan Cho</h1>
       <div className="mt-10 flex min-h-[100vh] justify-center">
         <div className="flex flex-col items-center">
           {data.map((file) => (
