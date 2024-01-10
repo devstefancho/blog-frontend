@@ -4,7 +4,9 @@ const baseUrl: string = process.env.API_BACKEND_BASE_URL ?? '';
 
 async function getBlogList() {
   try {
-    const result = await fetch(baseUrl + '/blog-list');
+    const result = await fetch(baseUrl + '/contents', {
+      cache: 'no-cache',
+    });
     return await result.json();
   } catch (e) {
     console.log(e);
