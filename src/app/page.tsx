@@ -21,15 +21,16 @@ async function getHello() {
 
 export default async function Home() {
   const helloText = await getHello();
-  const data: { path: string; name: string }[] = await getBlogList();
+  const data: { path: string; name: string; slug: string }[] =
+    await getBlogList();
   return (
     <>
       <h1 className="mt-10 flex justify-center">{helloText}</h1>
       <div className="mt-10 flex min-h-[100vh] justify-center">
         <div className="flex flex-col items-center">
           {data.map((file) => (
-            <Link key={file.path} href={`/content/${file.name}`}>
-              Go to {file.name}
+            <Link key={file.path} href={`/content/${file.slug}`}>
+              Go to {file.slug}
             </Link>
           ))}
         </div>
