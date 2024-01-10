@@ -16,3 +16,11 @@ export interface HeadingNode {
   depth: number;
   children: ChildrenNode[];
 }
+
+/** Dto */
+export type ContentsDataDto = {
+  path: string;
+  name: string;
+  slug: string;
+  frontMatter: Frontmatter;
+}[];
