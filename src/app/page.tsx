@@ -1,3 +1,5 @@
+import Card from '@/components/Card';
+import { ContentsDataDto } from '@/types/content';
 import Link from 'next/link';
 
 const baseUrl: string = process.env.API_BACKEND_BASE_URL ?? '';
@@ -15,20 +17,20 @@ async function getBlogList() {
 }
 
 export default async function Home() {
-  const data: { path: string; name: string; slug: string }[] =
-    await getBlogList();
+  const data: ContentsDataDto = await getBlogList();
   return (
     <>
-      <h1 className="mt-10 flex justify-center">Dev Stefan Cho</h1>
-      <div className="mt-10 flex min-h-[100vh] justify-center">
-        <div className="flex flex-col items-center">
+      <h1 className="mt-[100px] flex justify-center">Dev Stefan Cho</h1>
+      <h2 className="mt-[150px] flex justify-center">All Posts</h2>
+      <section className="mt-10 flex justify-center">
+        <div className="mt-10 flex max-w-[940px] flex-wrap justify-center gap-[20px]">
           {data.map((file) => (
             <Link key={file.path} href={`/content/${file.slug}`}>
-              Go to {file.slug}
+              <Card data={file} />
             </Link>
           ))}
         </div>
-      </div>
+      </section>
     </>
   );
 }
