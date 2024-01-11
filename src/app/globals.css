@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '@fortawesome/fontawesome-free/css/all.css';
 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -8,12 +9,21 @@
   --background-end-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+/*************************************************************/
+/** NOTE: 아래 주석 처리해야지 dark mode 토글시 색상 변경됨 **/
+/*************************************************************/
+/* @media (prefers-color-scheme: dark) { */
+/*   :root { */
+/*     --foreground-rgb: 255, 255, 255; */
+/*     --background-start-rgb: 0, 0, 0; */
+/*     --background-end-rgb: 0, 0, 0; */
+/*   } */
+/* } */
+
+html.dark {
+  --foreground-rgb: 255, 255, 255;
+  --background-start-rgb: 0, 0, 0;
+  --background-end-rgb: 0, 0, 0;
 }
 
 body {
