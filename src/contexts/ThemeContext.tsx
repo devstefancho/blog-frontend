@@ -1,26 +1,38 @@
 'use client';
 import { createContext, useContext, useState } from 'react';
+import Cookies from 'js-cookie';
+import { useRouter } from 'next/navigation';
+import { cookies } from 'next/headers';
+import { getNextTheme } from '@/utils/theme';
+import { Theme } from '@/constants/theme';
 
-type Theme = 'light' | 'dark';
 type ThemeContextType = {
   theme: Theme;
   toggleTheme: () => void;
 };
 
 const defaultTheme: ThemeContextType = {
-  theme: 'light',
+  theme: Theme.LIGHT,
   toggleTheme: () => {},
 };
 
 const ThemeContext = createContext<ThemeContextType>(defaultTheme);
 
-export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [theme, setTheme] = useState<Theme>('light');
+export const ThemeProvider = ({
+  children,
+  xTheme,
+}: {
+  children: React.ReactNode;
+  xTheme: Theme;
+}) => {
+  const [theme, setTheme] = useState<Theme>(xTheme);
+  const { refresh } = useRouter();
 
   const toggleTheme = () => {
-    setTheme(theme === 'light' ? 'dark' : 'light');
-    localStorage.setItem('theme', theme === 'light' ? 'dark' : 'light');
-    window.document.documentElement.classList.toggle('dark');
+    const nextTheme = getNextTheme(theme);
+    Cookies.set('x-theme', nextTheme);
+    setTheme(nextTheme);
+    refresh();
   };
 
   return (

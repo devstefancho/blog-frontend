@@ -4,6 +4,8 @@ import './globals.css';
 import NavBar from '@/layouts/NavBar';
 import Footer from '@/layouts/Footer';
 import { ThemeProvider } from '@/contexts/ThemeContext';
+import { cookies } from 'next/headers';
+import { Theme } from '@/constants/theme';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -17,10 +19,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const themeFromCookie =
+    cookies().get('x-theme')?.value === Theme.DARK ? Theme.DARK : Theme.LIGHT;
+
   return (
-    <html lang="en">
+    <html lang="en" className={themeFromCookie}>
       <body className={inter.className}>
-        <ThemeProvider>
+        <ThemeProvider xTheme={themeFromCookie}>
           <NavBar />
           {children}
           <Footer />
