@@ -6,6 +6,7 @@ import Footer from '@/layouts/Footer';
 import { ThemeProvider } from '@/contexts/ThemeContext';
 import { cookies } from 'next/headers';
 import { Theme } from '@/constants/theme';
+import 'highlight.js/styles/github-dark.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
