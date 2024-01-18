@@ -4,6 +4,7 @@ import { Metadata } from 'next';
 import { Frontmatter } from '@/types/content';
 import TableOfContents from '@/components/TableOfContents';
 import { getHeadings } from '@/utils/marked';
+import { notFound } from 'next/navigation';
 
 type Params = {
   params: {
@@ -30,6 +31,11 @@ async function getBlog(slug: string): Promise<{
   const result = await fetch(
     `${process.env.API_BACKEND_BASE_URL}/content/${slug}`
   );
+
+  if (!result.ok) {
+    notFound();
+  }
+
   return await result.json();
 }
 
