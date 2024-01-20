@@ -20,7 +20,8 @@
     "react-dom": "^18",
     "recursive-readdir": "^2.2.3",
     "remark": "^15.0.1",
-    "unist-util-visit": "^5.0.0"
+    "unist-util-visit": "^5.0.0",
+    "uuid": "^9.0.1"
   },
   "devDependencies": {
     "@types/js-cookie": "^3",
@@ -28,6 +29,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/recursive-readdir": "^2.2.4",
+    "@types/uuid": "^9",
     "autoprefixer": "^10.0.1",
     "eslint": "^8",
     "eslint-config-next": "14.0.4",

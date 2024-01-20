@@ -14,10 +14,10 @@ const Card: FC<PropTypes> = ({ data }) => {
           {data.slug.toUpperCase()}
         </div>
         <time className="block text-sm text-gray-600">
-          Created: {getDate(data.frontMatter.createdDate)}
+          Created: {getDate(data.frontMatter.createdDate, true)}
         </time>
         <time className="block text-sm text-gray-600">
-          Updated: {getDate(data.frontMatter.updatedDate)}
+          Updated: {getDate(data.frontMatter.updatedDate, true)}
         </time>
       </div>
     </div>
