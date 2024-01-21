@@ -1,5 +1,6 @@
 import { getDateTime } from '@/utils/date';
 import { generateUniqueId } from '@/utils/uuid';
+import { notFound } from 'next/navigation';
 
 interface PropTypes {}
 
@@ -36,12 +37,13 @@ async function getVisitorCount() {
     return await result.json();
   } catch (e) {
     console.log(e);
+    notFound();
   }
 }
 
 async function VisitCounter() {
-  await increaseVisitorCount();
   const result = await getVisitorCount();
+  await increaseVisitorCount();
   return (
     <>
       <div className="flex justify-center">
