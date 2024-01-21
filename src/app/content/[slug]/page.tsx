@@ -1,10 +1,9 @@
 import { Suspense } from 'react';
 import ScrollToHeading from '@/components/ScrollToHeading';
 import { Metadata } from 'next';
-import { Frontmatter } from '@/types/content';
 import TableOfContents from '@/components/TableOfContents';
 import { getHeadings } from '@/utils/marked';
-import { notFound } from 'next/navigation';
+import { getBlog } from '@/services/content';
 
 type Params = {
   params: {
@@ -21,22 +20,6 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   return {
     title: `Content | ${slug.slice(0, 1).toUpperCase()}${slug.slice(1)}`,
   };
-}
-
-async function getBlog(slug: string): Promise<{
-  html: string;
-  frontmatter: Frontmatter;
-  content: string;
-}> {
-  const result = await fetch(
-    `${process.env.API_BACKEND_BASE_URL}/content/${slug}`
-  );
-
-  if (!result.ok) {
-    notFound();
-  }
-
-  return await result.json();
 }
 
 async function ExampleContent({ slug }: { slug: string }) {

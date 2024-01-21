@@ -1,22 +1,9 @@
 import Card from '@/components/Card';
 import VisitCounter from '@/components/VisitCounter';
+import { getBlogList } from '@/services/content';
 import { ContentsDataDto } from '@/types/content';
 import { getDateTime } from '@/utils/date';
 import Link from 'next/link';
-
-const baseUrl: string = process.env.API_BACKEND_BASE_URL ?? '';
-
-async function getBlogList() {
-  try {
-    const result = await fetch(baseUrl + '/contents', {
-      cache: 'no-cache',
-    });
-    return await result.json();
-  } catch (e) {
-    console.log(e);
-    return [];
-  }
-}
 
 export default async function Home() {
   const data: ContentsDataDto = await getBlogList();
