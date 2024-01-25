@@ -4,6 +4,8 @@ import { Metadata } from 'next';
 import TableOfContents from '@/components/TableOfContents';
 import { getHeadings } from '@/utils/marked';
 import { getBlog } from '@/services/content';
+import { getDate } from '@/utils/date';
+import { getFrontMatterTableList } from '@/utils/frontmatter';
 
 type Params = {
   params: {
@@ -31,14 +33,19 @@ async function ExampleContent({ slug }: { slug: string }) {
         className="mx-auto flex flex-col"
         style={{ maxWidth: 'min(100%, 620px)' }}
       >
+        <table className="mb-[30px]">
+          <tbody>
+            {getFrontMatterTableList(data.frontmatter).map(
+              ({ label, value }) => (
+                <tr key={label}>
+                  <th className="w-[120px] text-left">{label}</th>
+                  <td>{value}</td>
+                </tr>
+              )
+            )}
+          </tbody>
+        </table>
         <TableOfContents headings={headings} />
-        <div className="mb-3">Slug: {data.frontmatter?.slug}</div>
-        <time className="block text-sm">
-          Created: {data.frontmatter?.createdDate}
-        </time>
-        <time className="block text-sm">
-          Updated: {data.frontmatter?.updatedDate}
-        </time>
         {data?.html && (
           <div
             className="mt-3"

@@ -1,10 +1,15 @@
 import { Node as UnistNode } from 'unist';
 
 export interface Frontmatter {
-  id: string; // atomic-habits
-  slug: string; // atomic-habits
-  createdDate: string; // 2023-11-06
-  updatedDate: string; // 2023-12-25
+  published: boolean;
+  id: string;
+  slug: string;
+  title: string;
+  description: string;
+  tags: string[];
+  categories: string[];
+  createdDate: string;
+  updatedDate: string;
 }
 
 export interface ChildrenNode extends UnistNode {
