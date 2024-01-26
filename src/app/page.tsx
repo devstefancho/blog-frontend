@@ -12,8 +12,8 @@ export default async function Home() {
       <h1 className="mt-[100px] flex justify-center">Dev Stefan Cho</h1>
       <h2 className="mt-[150px] flex justify-center">All Posts</h2>
       <VisitCounter />
-      <section className="mt-10 flex justify-center">
-        <div className="mt-10 flex max-w-[940px] flex-wrap justify-center gap-[20px]">
+      <section className="mt-10 flex justify-center pl-[10px] pr-[10px]">
+        <div className="mt-10 flex max-w-[940px] flex-col justify-center gap-[20px]">
           {data.map((file) => (
             <Link key={file.path} href={`/content/${file.slug}`}>
               <Card data={file} />
