@@ -14,10 +14,16 @@ export interface Frontmatter {
 
 export interface ChildrenNode extends UnistNode {
   value: string;
+  /** children exist when heading text has a link */
+  children?: Array<{
+    type: string;
+    value: string;
+    position: any;
+  }>;
 }
 
 export interface HeadingNode {
-  type: string;
+  type: string; // text | link | linkReference
   depth: number;
   children: ChildrenNode[];
 }

@@ -1,4 +1,5 @@
 import { HeadingNode } from '@/types/content';
+import { getHeadingText } from '@/utils/marked';
 import { FC } from 'react';
 
 interface PropTypes {
@@ -22,13 +23,14 @@ const TableOfContents: FC<PropTypes> = ({ headings }) => {
       <ul className="relative mb-5 rounded-[12px] bg-white p-4 tocLarge:fixed tocLarge:right-[130px] tocLarge:top-[100px] tocLarge:max-w-[400px] dark:text-black">
         {headings.map((h) =>
           h.children.map((child) => {
+            const headingText = getHeadingText(child);
             return (
               <li
-                key={child.value}
+                key={headingText}
                 className={`${getPaddingLeft(h.depth)} hover:text-sky-400`}
               >
-                <a href={`#${child.value.toLowerCase().replace(/ /g, '-')}`}>
-                  {child.value}
+                <a href={`#${headingText.toLowerCase().replace(/ /g, '-')}`}>
+                  {headingText}
                 </a>
               </li>
             );

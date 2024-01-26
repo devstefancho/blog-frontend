@@ -1,7 +1,7 @@
 import { marked } from 'marked';
 import { remark } from 'remark';
 import { visit } from 'unist-util-visit';
-import { HeadingNode, Frontmatter } from '@/types/content';
+import { HeadingNode, Frontmatter, ChildrenNode } from '@/types/content';
 
 function getMarkedInstance(): typeof marked {
   const renderer = {
@@ -26,4 +26,19 @@ export async function getHeadings(markdownContent: string) {
   });
 
   return headings;
+}
+
+export function getHeadingText(childrenNode: ChildrenNode): string {
+  let headingText = childrenNode.value;
+
+  /**
+   * @example
+   * ## [heading text](link)
+   * ## [heading text][link reference]
+   */
+  console.log(childrenNode);
+  if (childrenNode.type === 'linkReference' || childrenNode.type === 'link') {
+    headingText = childrenNode?.children?.[0].value ?? '';
+  }
+  return headingText || '';
 }
