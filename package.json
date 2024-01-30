@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@docsearch/react": "3",
     "@fortawesome/fontawesome-free": "^6.5.1",
     "dayjs": "^1.11.10",
     "gray-matter": "^4.0.3",
