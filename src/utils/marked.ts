@@ -36,7 +36,6 @@ export function getHeadingText(childrenNode: ChildrenNode): string {
    * ## [heading text](link)
    * ## [heading text][link reference]
    */
-  console.log(childrenNode);
   if (childrenNode.type === 'linkReference' || childrenNode.type === 'link') {
     headingText = childrenNode?.children?.[0].value ?? '';
   }

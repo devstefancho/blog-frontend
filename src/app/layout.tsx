@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/contexts/ThemeContext';
 import { cookies } from 'next/headers';
 import { Theme } from '@/constants/theme';
 import 'highlight.js/styles/github-dark.css';
+import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -25,6 +26,12 @@ export default function RootLayout({
 
   return (
     <html lang="en" className={themeFromCookie}>
+      <head>
+        <link
+          rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
+        />
+      </head>
       <body className={inter.className}>
         <ThemeProvider xTheme={themeFromCookie}>
           <NavBar />
