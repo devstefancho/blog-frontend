@@ -1,3 +1,10 @@
+import Image from 'next/image';
+
+// TODO: change loader to pixel art loader
 export default function Loading() {
-  return <div>Loading 중입니다!</div>;
+  return (
+    <div className="flex h-[90vh] items-center justify-center">
+      <span className="loader"></span>
+    </div>
+  );
 }
