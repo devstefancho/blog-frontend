@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import Logo from './Logo';
-import ThemeButton from './ThemeButton';
+import ButtonGroup from './ButtonGroup';
 import AlgoliaSearchBox from '@/components/search/AlgoliaSearchBox';
 
 interface PropTypes {}
@@ -33,7 +33,7 @@ const NavBar: FC<PropTypes> = () => {
               indexName={indexName}
             />
           )}
-          <ThemeButton />
+          <ButtonGroup />
         </div>
       </nav>
     </header>

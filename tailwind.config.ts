@@ -17,6 +17,7 @@ const config: Config = {
       },
       screens: {
         sm: { max: '639px' },
+        md: { max: '768px' }, // if width is larger than 768, it is tablet
         tocLarge: '1680px',
       },
     },
