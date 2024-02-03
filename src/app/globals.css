@@ -111,3 +111,7 @@ code:not(pre > code) {
     transform: translate(-25px, -25px) scale(1);
   }
 }
+
+:target {
+  scroll-margin-top: 80px; /* scroll margin top is compensation for header size */
+}
