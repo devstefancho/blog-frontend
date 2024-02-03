@@ -49,6 +49,15 @@ h2 {
   margin-top: 2rem;
 }
 
+ul {
+  list-style-type: disc;
+  padding-left: 1rem;
+}
+
+ul ul {
+  list-style-type: circle;
+}
+
 pre {
   background-color: #272822;
   border-radius: 0.5rem;
