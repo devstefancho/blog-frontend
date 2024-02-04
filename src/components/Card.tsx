@@ -13,7 +13,7 @@ const Card: FC<PropTypes> = ({ data }) => {
         <time className="text-sm text-gray-600">
           {getDate(data.frontMatter.updatedDate, true)}
         </time>
-        <div className="mb-[10px] text-2xl italic hover:text-blue-600 active:text-blue-600">
+        <div className="mb-[10px] text-2xl italic hover:text-link-hover active:text-link-active">
           {data.frontMatter.title}
         </div>
       </div>

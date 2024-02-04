@@ -115,3 +115,7 @@ code:not(pre > code) {
 :target {
   scroll-margin-top: 80px; /* scroll margin top is compensation for header size */
 }
+
+.icon {
+  @apply px-2 py-1 text-[20px] hover:text-link-hover active:text-link-active;
+}

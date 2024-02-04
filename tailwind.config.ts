@@ -20,6 +20,10 @@ const config: Config = {
         md: { max: '768px' }, // if width is larger than 768, it is tablet
         tocLarge: '1680px',
       },
+      colors: {
+        'link-hover': '#38bdf8', // text-sky-400
+        'link-active': '#0284c7', // text-sky-600
+      },
     },
   },
   plugins: [],

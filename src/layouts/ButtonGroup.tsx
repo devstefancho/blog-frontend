@@ -8,7 +8,7 @@ import { SOCIAL_LINK } from '@/constants/social';
 const GithubIcon: FC = () => {
   return (
     <Link href={SOCIAL_LINK.GIT_HUB} target="_blank">
-      <i className="fa-brands fa-github px-2 py-1 text-[20px]"></i>
+      <i className="fa-brands fa-github icon"></i>
     </Link>
   );
 };
@@ -16,7 +16,7 @@ const GithubIcon: FC = () => {
 const LinkedInIcon: FC = () => {
   return (
     <Link href={SOCIAL_LINK.LINKED_IN} target="_blank">
-      <i className="fa-brands fa-linkedin px-2 py-1 text-[20px]"></i>
+      <i className="fa-brands fa-linkedin icon"></i>
     </Link>
   );
 };
@@ -26,12 +26,7 @@ const ThemeIcon: FC = () => {
   const handleClick = () => {
     toggleTheme();
   };
-  return (
-    <i
-      className="fa-regular fa-lightbulb px-2 py-1 text-[20px]"
-      onClick={handleClick}
-    ></i>
-  );
+  return <i className="fa-regular fa-lightbulb icon" onClick={handleClick}></i>;
 };
 
 const DropDown: FC = () => {

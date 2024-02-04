@@ -27,7 +27,9 @@ const TableOfContents: FC<PropTypes> = ({ headings }) => {
             return (
               <li
                 key={headingText}
-                className={`${getPaddingLeft(h.depth)} hover:text-sky-400`}
+                className={`${getPaddingLeft(
+                  h.depth
+                )} hover:text-link-hover active:text-link-active`}
               >
                 <a href={`#${headingText.toLowerCase().replace(/ /g, '-')}`}>
                   {headingText}
