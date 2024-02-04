@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   };
 }
 
-async function ExampleContent({ slug }: { slug: string }) {
+async function ContentContainer({ slug }: { slug: string }) {
   const data = await getBlog(slug);
   const headings = await getHeadings(data.content);
   return (
@@ -59,11 +59,9 @@ async function ExampleContent({ slug }: { slug: string }) {
 
 export default async function Page({ params: { slug } }: Params) {
   return (
-    <>
-      <Suspense fallback={<div>Loading...</div>}>
-        <ExampleContent slug={slug} />
-        <ScrollToHeading />
-      </Suspense>
-    </>
+    <div className="min-h-[75vh]">
+      <ContentContainer slug={slug} />
+      <ScrollToHeading />
+    </div>
   );
 }
