@@ -119,3 +119,19 @@ code:not(pre > code) {
 .icon {
   @apply px-2 py-1 text-[20px] hover:text-link-hover active:text-link-active;
 }
+
+/* Anchor tag for heading */
+/* fontawesome icon: https://fontawesome.com/icons/link?f=classic&s=solid */
+a.anchor::before {
+  content: '\f0c1';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 600;
+  font-size: 0.7em;
+  color: rgba(var(--foreground-rgb), 0.3);
+  transition: color 0.5s;
+  @apply hover:text-link-hover active:text-link-active;
+}
+
+h1 > a.anchor::before {
+  display: none;
+}
