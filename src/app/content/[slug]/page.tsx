@@ -31,7 +31,7 @@ async function ContentContainer({ slug }: { slug: string }) {
     <div className="mx-[15px] mb-[100px] mt-[50px] flex justify-center">
       <div
         className="mx-auto flex flex-col"
-        style={{ maxWidth: 'min(100%, 620px)' }}
+        style={{ maxWidth: 'min(100%, 720px)' }}
       >
         <table className="mb-[30px]">
           <tbody>
