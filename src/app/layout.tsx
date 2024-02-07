@@ -27,6 +27,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={themeFromCookie}>
       <head>
+        <meta
+          name="google-site-verification"
+          content="ZzOImKe9PcfLg8MvS7bJpK7JVu8zgjKoXo28HU8zfs0"
+        />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/@docsearch/css@3"
