@@ -2,18 +2,20 @@ import Card from '@/components/Card';
 import VisitCounter from '@/components/VisitCounter';
 import { getBlogList } from '@/services/content';
 import { ContentsDataDto } from '@/types/content';
-import { getDateTime } from '@/utils/date';
 import Link from 'next/link';
 
 export default async function Home() {
   const data: ContentsDataDto = await getBlogList();
   return (
-    <>
-      <h1 className="mt-[100px] flex justify-center">Dev Stefan Cho</h1>
-      <h2 className="mt-[150px] flex justify-center">All Posts</h2>
-      <VisitCounter />
-      <section className="mt-10 flex justify-center pl-[10px] pr-[10px]">
-        <div className="mt-10 flex max-w-[940px] flex-col justify-center gap-[20px]">
+    <div className="min-h-[80vh] p-[40px] md:p-[10px]">
+      <h1 className="flex md:justify-center">Dev Stefan Cho</h1>
+      <h2 className="mt-[50px] flex md:justify-center">All Posts</h2>
+
+      {/* UI 위치 잡으면 주석해제 */}
+      {/* <VisitCounter /> */}
+
+      <section className="flex pl-[10px] pr-[10px] md:justify-center">
+        <div className="flex max-w-[940px] flex-col gap-[20px] md:justify-center">
           {data.map((file) => (
             <Link key={file.path} href={`/content/${file.slug}`}>
               <Card data={file} />
@@ -21,6 +23,6 @@ export default async function Home() {
           ))}
         </div>
       </section>
-    </>
+    </div>
   );
 }

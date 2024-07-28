@@ -21,7 +21,7 @@ export async function getBlog(slug: string): Promise<{
 
 export async function getBlogList() {
   try {
-    const result = await fetch(baseUrl + '/contents', {
+    const result = await fetch(baseUrl + '/contents?excerpt_size=100', {
       cache: 'no-cache',
     });
     return await result.json();

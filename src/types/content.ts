@@ -35,4 +35,5 @@ export type ContentsDataDto = {
   name: string;
   slug: string;
   frontMatter: Frontmatter;
+  excerpt: string;
 }[];
