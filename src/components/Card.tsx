@@ -1,6 +1,6 @@
-import { ContentsDataDto } from '@/types/content';
-import { getDate } from '@/utils/date';
 import { FC } from 'react';
+import { getDate } from '@/utils/date';
+import { ContentsDataDto } from '@/types/content';
 
 interface PropTypes {
   data: ContentsDataDto[number];
