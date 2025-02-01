@@ -2,12 +2,14 @@ import Link from 'next/link';
 import Card from '@/components/Card';
 import { getBlogList } from '@/services/content';
 import { ContentsDataDto } from '@/types/content';
+import AboutMe from '@/components/AboutMe';
 
 export default async function Home() {
   const data: ContentsDataDto = await getBlogList();
   return (
     <div className="min-h-[80vh] p-[40px] md:p-[10px]">
       <h1 className="flex md:justify-center">Dev Stefan Cho</h1>
+      <AboutMe />
       <h2 className="mt-[50px] flex md:justify-center">All Posts</h2>
 
       {/* UI 위치 잡으면 주석해제 */}
