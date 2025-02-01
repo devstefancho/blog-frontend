@@ -1,10 +1,8 @@
-import { Suspense } from 'react';
-import ScrollToHeading from '@/components/ScrollToHeading';
 import { Metadata } from 'next';
+import ScrollToHeading from '@/components/ScrollToHeading';
 import TableOfContents from '@/components/TableOfContents';
 import { getHeadings } from '@/utils/marked';
 import { getBlog } from '@/services/content';
-import { getDate } from '@/utils/date';
 import { getFrontMatterTableList } from '@/utils/frontmatter';
 
 type Params = {

@@ -19,7 +19,7 @@ export interface ChildrenNode extends UnistNode {
   children?: Array<{
     type: string;
     value: string;
-    position: any;
+    position: unknown;
   }>;
 }
 

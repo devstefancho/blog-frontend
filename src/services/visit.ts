@@ -1,6 +1,6 @@
+import { notFound } from 'next/navigation';
 import { getDateTime } from '@/utils/date';
 import { generateUniqueId } from '@/utils/uuid';
-import { notFound } from 'next/navigation';
 
 const baseUrl: string = process.env.API_BACKEND_BASE_URL ?? '';
 

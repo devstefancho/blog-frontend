@@ -1,8 +1,7 @@
+import Link from 'next/link';
 import Card from '@/components/Card';
-import VisitCounter from '@/components/VisitCounter';
 import { getBlogList } from '@/services/content';
 import { ContentsDataDto } from '@/types/content';
-import Link from 'next/link';
 
 export default async function Home() {
   const data: ContentsDataDto = await getBlogList();

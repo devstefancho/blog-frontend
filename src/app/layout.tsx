@@ -1,13 +1,12 @@
 import type { Metadata } from 'next';
+import { cookies } from 'next/headers';
 import { Inter } from 'next/font/google';
 import './globals.css';
 import NavBar from '@/layouts/NavBar';
 import Footer from '@/layouts/Footer';
 import { ThemeProvider } from '@/contexts/ThemeContext';
-import { cookies } from 'next/headers';
 import { Theme } from '@/constants/theme';
 import 'highlight.js/styles/github-dark.css';
-import Head from 'next/head';
 
 const inter = Inter({ subsets: ['latin'] });
 

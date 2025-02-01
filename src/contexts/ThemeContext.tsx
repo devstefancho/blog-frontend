@@ -2,7 +2,6 @@
 import { createContext, useContext, useState } from 'react';
 import Cookies from 'js-cookie';
 import { useRouter } from 'next/navigation';
-import { cookies } from 'next/headers';
 import { getNextTheme } from '@/utils/theme';
 import { Theme } from '@/constants/theme';
 

@@ -1,5 +1,3 @@
-import Image from 'next/image';
-
 // TODO: change loader to pixel art loader
 export default function Loading() {
   return (

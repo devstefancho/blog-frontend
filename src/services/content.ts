@@ -1,5 +1,5 @@
-import { Frontmatter } from '@/types/content';
 import { notFound } from 'next/navigation';
+import { Frontmatter } from '@/types/content';
 
 const baseUrl: string = process.env.API_BACKEND_BASE_URL ?? '';
 

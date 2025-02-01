@@ -1,6 +1,6 @@
+import { FC } from 'react';
 import { HeadingNode } from '@/types/content';
 import { getHeadingText } from '@/utils/marked';
-import { FC } from 'react';
 
 interface PropTypes {
   headings: HeadingNode[];

@@ -1,7 +1,5 @@
 import { getVisitorCount, increaseVisitorCount } from '@/services/visit';
 
-interface PropTypes {}
-
 async function VisitCounter() {
   const result = await getVisitorCount();
   await increaseVisitorCount();

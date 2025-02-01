@@ -1,7 +1,7 @@
 import { FC } from 'react';
+import AlgoliaSearchBox from '@/components/search/AlgoliaSearchBox';
 import Logo from './Logo';
 import ButtonGroup from './ButtonGroup';
-import AlgoliaSearchBox from '@/components/search/AlgoliaSearchBox';
 
 interface PropTypes {}
 

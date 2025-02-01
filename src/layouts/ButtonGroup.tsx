@@ -1,8 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { FC, useState } from 'react';
 import { useTheme } from '@/contexts/ThemeContext';
-import Link from 'next/link';
 import { SOCIAL_LINK } from '@/constants/social';
 
 const GithubIcon: FC = () => {

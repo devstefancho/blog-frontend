@@ -1,7 +1,7 @@
 import { marked } from 'marked';
 import { remark } from 'remark';
 import { visit } from 'unist-util-visit';
-import { HeadingNode, Frontmatter, ChildrenNode } from '@/types/content';
+import { HeadingNode, ChildrenNode } from '@/types/content';
 
 function getMarkedInstance(): typeof marked {
   const renderer = {

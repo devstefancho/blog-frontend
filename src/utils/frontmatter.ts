@@ -3,14 +3,14 @@ import { getDate } from './date';
 
 export const getFrontMatterTableList = (frontMatter: Frontmatter) => {
   const {
-    published,
-    id,
-    slug,
-    title,
-    summary,
-    toc,
-    tags,
-    categories,
+    // published,
+    // id,
+    // slug,
+    // title,
+    // summary,
+    // toc,
+    // tags,
+    // categories,
     createdDate,
     updatedDate,
   } = frontMatter;
