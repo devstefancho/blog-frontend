@@ -1,5 +1,16 @@
 # DevStefanCho's Blog
 
-## About Project
+## Deploy Service
 
-use nextjs 14, styling with tailwind
+The service has been deployed using Vercel.
+
+## Test
+
+```bash
+# dev test
+yarn dev
+
+# prod test
+yarn build
+yarn start
+```
