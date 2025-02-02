@@ -16,7 +16,7 @@ const Logo: FC<PropTypes> = () => {
       className="cursor-pointer p-[10px] dark:text-white"
       onClick={handleClick}
     >
-      <Image src="logo.svg" alt="logo" width={40} height={40} />
+      <Image src="/logo.svg" alt="logo" width={40} height={40} />
     </div>
   );
 };
