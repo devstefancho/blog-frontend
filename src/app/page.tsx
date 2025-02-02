@@ -6,13 +6,14 @@ import AboutMe from '@/components/AboutMe';
 
 export default async function Home() {
   const data: ContentsDataDto = await getBlogList();
+  const postCountText = `All Posts (${data.length}개)`;
   return (
     <div className="min-h-[80vh] p-[40px] md:p-[10px]">
       <h1 className="flex rounded-[8px] bg-logo-bg p-[20px] text-logo-text md:justify-center">
         {'>'} DevStefanCho
       </h1>
       <AboutMe />
-      <h2 className="mt-[50px] flex md:justify-center">All Posts</h2>
+      <h2 className="mt-[50px] flex md:justify-center">{postCountText}</h2>
 
       {/* UI 위치 잡으면 주석해제 */}
       {/* <VisitCounter /> */}
