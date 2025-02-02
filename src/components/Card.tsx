@@ -15,7 +15,7 @@ const Card: FC<PropTypes> = ({ data }) => {
       px-[30px] py-[20px]"
     >
       <time className="flex justify-end pb-[8px] text-xs text-gray-600">
-        Updated : {getDate(data.frontMatter.updatedDate, true, 'YYYY/MM/DD')}
+        {getDate(data.frontMatter.updatedDate, true, 'YYYY년 MM월 DD일')}
       </time>
       <div className="mb-[10px] text-2xl italic hover:text-link-hover active:text-link-active">
         {data.frontMatter.title}

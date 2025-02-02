@@ -15,7 +15,10 @@ export const getFrontMatterTableList = (frontMatter: Frontmatter) => {
     updatedDate,
   } = frontMatter;
   return [
-    { label: 'Created', value: getDate(createdDate, true) },
-    { label: 'Updated', value: getDate(updatedDate, true) },
+    { label: '생성일', value: getDate(createdDate, true, 'YYYY년 MM월 DD일') },
+    {
+      label: '업데이트일',
+      value: getDate(updatedDate, true, 'YYYY년 MM월 DD일'),
+    },
   ];
 };
