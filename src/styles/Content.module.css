@@ -1,0 +1,17 @@
+.container a {
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+.container a:hover {
+  color: #38bdf8;
+}
+
+.container a:active {
+  color: #0284c7;
+}
+
+.container a[class^='anchor'] {
+  color: unset;
+  text-decoration: unset;
+}
