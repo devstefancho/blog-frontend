@@ -7,15 +7,22 @@ interface PropTypes {
 }
 
 const Card: FC<PropTypes> = ({ data }) => {
+  const excerpt = data.excerpt + '...';
   return (
-    <div className="flex min-w-[300px] max-w-[380px] flex-col rounded-lg">
-      <time className="text-sm text-gray-600">
-        {getDate(data.frontMatter.updatedDate, true)}
+    <div
+      className="flex min-w-[300px] max-w-[380px] flex-col rounded-lg
+      border border-solid border-black
+      px-[30px] py-[20px]"
+    >
+      <time className="flex justify-end pb-[8px] text-xs text-gray-600">
+        Updated : {getDate(data.frontMatter.updatedDate, true, 'YYYY/MM/DD')}
       </time>
       <div className="mb-[10px] text-2xl italic hover:text-link-hover active:text-link-active">
         {data.frontMatter.title}
       </div>
-      <div className="break-words text-sm text-gray-600">{data.excerpt}</div>
+      <div className="min-h-[80px] break-words text-sm text-gray-800">
+        {excerpt}
+      </div>
     </div>
   );
 };

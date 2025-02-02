@@ -12,11 +12,16 @@ dayjs.locale('ko');
  * @param noTimeZone 이미 한국시간인 경우에는 true
  * @returns
  */
-export const getDate = (date: string, noTimeZone?: boolean) => {
+export const getDate = (
+  date: string,
+  noTimeZone?: boolean,
+  format?: string
+) => {
+  const _format = format || 'YYYY-MM-DD';
   if (noTimeZone) {
-    return dayjs(date).format('YYYY-MM-DD');
+    return dayjs(date).format(_format);
   }
-  return dayjs(date).tz('Asia/Seoul').format('YYYY-MM-DD');
+  return dayjs(date).tz('Asia/Seoul').format(_format);
 };
 
 export const getDateTime = () => {

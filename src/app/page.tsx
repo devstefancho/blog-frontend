@@ -18,7 +18,7 @@ export default async function Home() {
       {/* <VisitCounter /> */}
 
       <section className="flex pl-[10px] pr-[10px] md:justify-center">
-        <div className="flex max-w-[940px] flex-col gap-[20px] md:justify-center">
+        <div className="flex flex-row flex-wrap gap-[20px] md:justify-center">
           {data.map((file) => (
             <Link key={file.path} href={`/content/${file.slug}`}>
               <Card data={file} />
