@@ -23,6 +23,8 @@ const config: Config = {
       colors: {
         'link-hover': '#38bdf8', // text-sky-400
         'link-active': '#0284c7', // text-sky-600
+        'logo-text': '#60D701',
+        'logo-bg': '#181818',
       },
     },
   },

@@ -8,7 +8,9 @@ export default async function Home() {
   const data: ContentsDataDto = await getBlogList();
   return (
     <div className="min-h-[80vh] p-[40px] md:p-[10px]">
-      <h1 className="flex md:justify-center">Dev Stefan Cho</h1>
+      <h1 className="flex rounded-[8px] bg-logo-bg p-[20px] text-logo-text md:justify-center">
+        {'>'} DevStefanCho
+      </h1>
       <AboutMe />
       <h2 className="mt-[50px] flex md:justify-center">All Posts</h2>
 

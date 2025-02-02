@@ -6,8 +6,8 @@ const AboutMe: FC = () => {
     <div>
       <Link href="/content/about-me">
         <p
-          className="flex cursor-pointer text-lg font-bold text-blue-500 hover:text-blue-700
-      md:justify-center"
+          className="flex cursor-pointer text-lg font-bold text-blue-500 underline
+      hover:text-blue-700 md:justify-center"
         >
           About Me 읽기
         </p>
