@@ -1,0 +1,27 @@
+.container [class^='section-item'] {
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 8px 0;
+  margin-top: 8px;
+}
+
+.container a {
+  color: #0077cc;
+  text-decoration: underline;
+}
+
+.container a:hover {
+  color: #38bdf8;
+}
+
+.container a:active {
+  color: #0284c7;
+}
+
+.container a[class^='anchor']::before {
+  display: none !important;
+}
+
+.container h2 {
+  margin-top: 40px;
+}

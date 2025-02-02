@@ -4,7 +4,6 @@ import TableOfContents from '@/components/TableOfContents';
 import { getHeadings } from '@/utils/marked';
 import { getBlog } from '@/services/content';
 import { getFrontMatterTableList } from '@/utils/frontmatter';
-import styles from '@/styles/Content.module.css';
 
 type Params = {
   params: {
@@ -46,12 +45,10 @@ async function ContentContainer({ slug }: { slug: string }) {
         </table>
         <TableOfContents headings={headings} />
         {data?.html && (
-          <div className={styles.container}>
-            <div
-              className="mt-3"
-              dangerouslySetInnerHTML={{ __html: data.html }}
-            />
-          </div>
+          <div
+            className="mt-3"
+            dangerouslySetInnerHTML={{ __html: data.html }}
+          />
         )}
       </div>
     </div>
