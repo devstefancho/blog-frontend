@@ -26,25 +26,17 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 async function ContentContainer({ slug }: { slug: string }) {
   const data = await getBlog(slug);
   const headings = await getHeadings(data.content);
+  const metadata = getFrontMatterTableList(data.frontmatter)
+    .map(({ label, value }) => `${label} : ${value}`)
+    .join(' | ');
   return (
     <div className="mx-[15px] mb-[100px] mt-[50px] flex justify-center">
       <div
         className="mx-auto flex flex-col"
         style={{ maxWidth: 'min(100%, 720px)' }}
       >
-        <table className="mb-[30px]">
-          <tbody>
-            {getFrontMatterTableList(data.frontmatter).map(
-              ({ label, value }) => (
-                <tr key={label}>
-                  <th className="w-[120px] text-left">{label}</th>
-                  <td>{value}</td>
-                </tr>
-              )
-            )}
-          </tbody>
-        </table>
         <TableOfContents headings={headings} />
+        <div className="mb-[10px] text-xs text-gray-500">{metadata}</div>
         {data?.html && (
           <div className={styles.container}>
             <div

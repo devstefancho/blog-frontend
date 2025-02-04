@@ -28,7 +28,7 @@ export const ThemeProvider = ({
   const { refresh } = useRouter();
 
   const toggleTheme = () => {
-    const nextTheme = getNextTheme(theme);
+    const nextTheme = getNextTheme();
     Cookies.set('x-theme', nextTheme);
     setTheme(nextTheme);
     refresh();
